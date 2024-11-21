@@ -1,10 +1,11 @@
 const ZKLib = require('node-zklib');
 
 // Sucursal de administración configurada manualmente
+// Sucursal de administración configurada dinámicamente desde .env
 const adminBranch = {
-    name: 'Administración',
-    host: '192.168.5.229',
-    port: 4370,
+    name: process.env.ADMIN_BRANCH_NAME , // Valor por defecto: "Administración"
+    host: process.env.ADMIN_BRANCH_HOST ,  // Valor por defecto: "192.168.5.229"
+    port: parseInt(process.env.ADMIN_BRANCH_PORT, 10) // Valor por defecto: 4370
 };
 
 // Generar sucursales dinámicamente para las demás
