@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación - Sistema de Gestión de Asistencia</title>
+</head>
+<body>
+    <header>
+        <h1>Sistema de Gestión de Asistencia con ZKTeco</h1>
+        <p>Este proyecto es una API y aplicación web para gestionar y consultar datos de asistencia obtenidos desde dispositivos ZKTeco. Incluye protección con token API y documentación interactiva para facilitar su uso.</p>
+    </header>
+    <main>
+        <section>
+            <h2>Requisitos previos</h2>
+            <ul>
+                <li><p>Node.js: <a href="https://nodejs.org/" target="_blank">Descargar aquí</a></p></li>
+                <li><p>NPM o Yarn (incluido con Node.js)</p></li>
+                <li><p>Acceso a dispositivos ZKTeco configurados con IP y puerto accesibles.</p></li>
+                <li><p>Configuración de variables de entorno en un archivo <code>.env</code>.</p></li>
+            </ul>
+        </section>
+        <section>
+            <h2>Instalación</h2>
+            <ol>
+                <li>
+                    <h3>Clonar este repositorio</h3>
+                    <pre><code>git clone https://github.com/tu_usuario/tu_repositorio.git
+cd tu_repositorio
+                    </code></pre>
+                </li>
+                <li>
+                    <h3>Instalar dependencias</h3>
+                    <p>Ejecuta el siguiente comando:</p>
+                    <pre><code>npm install</code></pre>
+                </li>
+                <li>
+                    <h3>Configurar variables de entorno</h3>
+                    <p>Crea un archivo <code>.env</code> en la raíz del proyecto con el siguiente contenido:</p>
+                    <pre><code>
+# Configuración del servidor
+PORT=3000
+
+# Token API para protección
+API_TOKEN=F4rM4C14
+
+# Configuración de la sucursal de administración
+ADMIN_BRANCH_NAME=Administración
+ADMIN_BRANCH_HOST=192.168.5.229
+ADMIN_BRANCH_PORT=4370
+
+# Configuración de otras sucursales
+BRANCH_COUNT=3
+BRANCH_PREFIX=sanchez
+BRANCH_PORT=4370
+                    </code></pre>
+                </li>
+            </ol>
+        </section>
+        <section>
+            <h2>Ejecutar la aplicación</h2>
+            <p>Para iniciar el servidor, ejecuta:</p>
+            <pre><code>npm start</code></pre>
+            <p>Por defecto, el servidor estará disponible en <a href="http://localhost:3000" target="_blank">http://localhost:3000</a>.</p>
+        </section>
+        <section>
+            <h2>Endpoints principales</h2>
+            <h3>1. Obtener asistencia</h3>
+            <p><strong>Endpoint:</strong> <code>POST /fetch-attendance</code></p>
+            <p><strong>Headers:</strong></p>
+            <pre><code>
+x-api-token: F4rM4C14
+Content-Type: application/json
+            </code></pre>
+            <p><strong>Body (JSON):</strong></p>
+            <pre><code>
+{
+    "branch": "Sucursal 1",
+    "startDate": "2024-11-10",
+    "endDate": "2024-11-15"
+}
+            </code></pre>
+            <p><strong>Respuesta (JSON):</strong></p>
+            <pre><code>
+{
+    "branch": "Sucursal 1",
+    "data": [
+        {
+            "userSn": 1,
+            "deviceUserId": "9999",
+            "recordTime": "2024-11-14T12:40:21.000Z",
+            "ip": "sanchez1.ddns.net"
+        },
+        ...
+    ]
+}
+            </code></pre>
+            <h3>2. Documentación</h3>
+            <p><strong>Endpoint:</strong> <code>GET /documentation</code></p>
+            <p>Accede a la documentación interactiva en formato web.</p>
+        </section>
+        <section>
+            <h2>Autenticación con Token API</h2>
+            <p>El token API protege los endpoints sensibles. Asegúrate de incluir el token en el header <code>x-api-token</code> en cada solicitud.</p>
+            <p>Por defecto, el token configurado es:</p>
+            <pre><code>F4rM4C14</code></pre>
+        </section>
+        <section>
+            <h2>Licencia</h2>
+            <p>Este proyecto está bajo la licencia MIT. Puedes usarlo, modificarlo y distribuirlo bajo los términos de esta licencia.</p>
+        </section>
+    </main>
+</body>
+</html>
