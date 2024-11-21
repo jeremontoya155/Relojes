@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación de la API</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Documentación de la API</h1>
+        <p class="text-muted">A continuación, se describen los endpoints disponibles para consultar los datos de asistencia.</p>
+
+        <hr>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                <h2>Endpoint: Obtener Sucursales</h2>
+            </div>
+            <div class="card-body">
+                <h4>GET <code>/</code></h4>
+                <p>Obtiene la lista de sucursales disponibles.</p>
+
+                <h5>Ejemplo de Respuesta:</h5>
+                <pre><code>{
+    "branches": [
+        { "name": "Administración", "host": "192.168.5.229", "port": 4370 },
+        { "name": "Sucursal 1", "host": "sanchez1.ddns.net", "port": 4370 },
+        { "name": "Sucursal 2", "host": "sanchez2.ddns.net", "port": 4370 }
+    ]
+}</code></pre>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                <h2>Endpoint: Consultar Asistencia</h2>
+            </div>
+            <div class="card-body">
+                <h4>POST <code>/fetch-attendance</code></h4>
+                <p>Consulta los datos de asistencia de una sucursal en un rango de fechas.</p>
+
+                <h5>Parámetros:</h5>
+                <ul>
+                    <li><code>branch</code> (requerido): Nombre de la sucursal.</li>
+                    <li><code>startDate</code> (requerido): Fecha de inicio en formato <code>YYYY-MM-DD</code>.</li>
+                    <li><code>endDate</code> (requerido): Fecha de fin en formato <code>YYYY-MM-DD</code>.</li>
+                </ul>
+
+                <h5>Ejemplo de Solicitud:</h5>
+                <pre><code>POST http://localhost:3000/fetch-attendance
+Content-Type: application/json
+
+{
+    "branch": "Sucursal 1",
+    "startDate": "2024-11-10",
+    "endDate": "2024-11-15"
+}</code></pre>
+
+                <h5>Ejemplo de Respuesta:</h5>
+                <pre><code>{
+    "branch": "Sucursal 1",
+    "data": [
+        {
+            "userSn": 1,
+            "deviceUserId": "9999",
+            "recordTime": "2024-11-14T12:40:21.000Z",
+            "ip": "sanchez1.ddns.net"
+        },
+        {
+            "userSn": 2,
+            "deviceUserId": "56",
+            "recordTime": "2024-11-14T07:56:39.000Z",
+            "ip": "sanchez1.ddns.net"
+        }
+    ]
+}</code></pre>
+            </div>
+        </div>
+
+        <div class="text-center mt-5">
+            <p class="text-muted">Recuerda reemplazar <code>localhost</code> con el nombre de tu dominio al hostear esta aplicación.</p>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

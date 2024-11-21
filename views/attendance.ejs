@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datos de Asistencia</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Datos de Asistencia para <%= branch %></h1>
+        <p>Desde: <%= startDate %> | Hasta: <%= endDate %></p>
+        <% if (data && data.length > 0) { %>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Usuario</th>
+                        <th>ID del Dispositivo</th>
+                        <th>Hora del Registro</th>
+                        <th>Sucursal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% data.forEach(record => { %>
+                        <tr>
+                            <td><%= record.userSn %></td>
+                            <td><%= record.deviceUserId %></td>
+                            <td><%= new Date(record.recordTime).toLocaleString() %></td>
+                            <td><%= branch %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p>No hay datos de asistencia para este rango de fechas.</p>
+        <% } %>
+    </div>
+</body>
+</html>
