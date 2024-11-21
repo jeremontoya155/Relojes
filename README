@@ -103,7 +103,7 @@ Content-Type: application/json
             <h2>Autenticación con Token API</h2>
             <p>El token API protege los endpoints sensibles. Asegúrate de incluir el token en el header <code>x-api-token</code> en cada solicitud.</p>
             <p>Por defecto, el token configurado es:</p>
-            <pre><code>F4rM4C14</code></pre>
+           
         </section>
         <section>
             <h2>Licencia</h2>

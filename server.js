@@ -1,9 +1,13 @@
 require('dotenv').config(); // Cargar las variables de entorno desde .env
 const express = require('express');
 const path = require('path');
+const cors = require('cors'); // Importar CORS
 
 // Crear la aplicación Express
 const app = express();
+
+// Configurar CORS para permitir solicitudes de todos los orígenes
+app.use(cors());
 
 // Puerto desde el archivo .env o por defecto 3000
 const port = process.env.PORT || 3000;
