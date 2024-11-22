@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tickets por Hora</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Tickets por Hora</h1>
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <label for="filter-sucursal" class="form-label">Filtrar por Sucursal:</label>
+                <select id="filter-sucursal" class="form-select">
+                    <option value="">Todas las Sucursales</option>
+                    <% const sucursales = [...new Set(data.map(row => row.Sucursal))]; %>
+                    <% sucursales.forEach(sucursal => { %>
+                        <option value="<%= sucursal %>"><%= sucursal %></option>
+                    <% }); %>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="filter-hora" class="form-label">Filtrar por Hora:</label>
+                <select id="filter-hora" class="form-select">
+                    <option value="">Todas las Horas</option>
+                    <% for (let i = 0; i < 24; i++) { %>
+                        <option value="<%= i %>"><%= i %>:00</option>
+                    <% } %>
+                </select>
+            </div>
+            <div class="col-md-4 d-flex align-items-end">
+                <button id="btn-filter" class="btn btn-primary">Filtrar</button>
+            </div>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Sucursal</th>
+                    <th>Mes</th>
+                    <th>Hora</th>
+                    <th>Total Tickets</th>
+                </tr>
+            </thead>
+            <tbody id="tickets-table">
+                <% data.forEach(row => { %>
+                    <tr>
+                        <td class="sucursal"><%= row.Sucursal %></td>
+                        <td class="mes"><%= row.Mes %></td>
+                        <td class="hora"><%= row.Hora %></td>
+                        <td class="total-tickets"><%= row.TotalTickets %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sucursalFilter = document.getElementById('filter-sucursal');
+            const horaFilter = document.getElementById('filter-hora');
+            const ticketsTable = document.getElementById('tickets-table');
+            const btnFilter = document.getElementById('btn-filter');
+
+            // Función para filtrar los datos en la tabla
+            const filterTable = () => {
+                const sucursalValue = sucursalFilter.value;
+                const horaValue = horaFilter.value;
+
+                // Obtener todas las filas de la tabla
+                const rows = Array.from(ticketsTable.querySelectorAll('tr'));
+
+                rows.forEach(row => {
+                    const sucursal = row.querySelector('.sucursal').textContent.trim();
+                    const hora = row.querySelector('.hora').textContent.trim();
+
+                    // Verificar si la fila cumple con los filtros
+                    const matchesSucursal = !sucursalValue || sucursal === sucursalValue;
+                    const matchesHora = !horaValue || hora === horaValue;
+
+                    // Mostrar u ocultar la fila según los filtros
+                    if (matchesSucursal && matchesHora) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            };
+
+            // Escuchar el evento click del botón Filtrar
+            btnFilter.addEventListener('click', filterTable);
+        });
+    </script>
+</body>
+</html>
