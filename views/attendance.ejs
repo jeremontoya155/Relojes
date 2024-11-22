@@ -11,6 +11,7 @@
         <h1>Datos de Asistencia para <%= branch %></h1>
         <p>Desde: <%= startDate %> | Hasta: <%= endDate %></p>
         <% if (data && data.length > 0) { %>
+            <p class="text-success">Mostrando datos más recientes disponibles.</p>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -34,6 +35,7 @@
         <% } else { %>
             <p>No hay datos de asistencia para este rango de fechas.</p>
         <% } %>
+        
     </div>
 </body>
 </html>
