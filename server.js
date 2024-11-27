@@ -26,11 +26,13 @@ app.use(express.json());
 const attendanceRoutes = require('./routes/attendanceRoutes'); // Rutas para la funcionalidad de asistencia
 const documentationRoutes = require('./routes/documentationRoutes'); // Rutas para la documentación
 const ticketRoutes = require('./routes/ticketRoutes'); // Rutas para tickets por hora
+const sucursalRoutes = require('./routes/sucursalRoutes'); // Rutas para tickets por hora
 
 // Usar rutas
 app.use('/', attendanceRoutes); // Rutas para la funcionalidad de asistencia
 app.use('/documentation', documentationRoutes); // Rutas para la documentación
 app.use('/tickets', ticketRoutes); // Rutas para tickets por hora
+app.use('/sucursales', sucursalRoutes); // Rutas para tickets por hora
 
 // Manejar errores 404 (Página no encontrada)
 app.use((req, res) => {
