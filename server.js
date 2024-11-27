@@ -27,13 +27,15 @@ const attendanceRoutes = require('./routes/attendanceRoutes'); // Rutas para la 
 const documentationRoutes = require('./routes/documentationRoutes'); // Rutas para la documentación
 const ticketRoutes = require('./routes/ticketRoutes'); // Rutas para tickets por hora
 const sucursalRoutes = require('./routes/sucursalRoutes'); // Rutas para tickets por hora
+const empleadosPorHoraRoutes = require('./routes/empleadosPorHoraRoutes');
+
 
 // Usar rutas
 app.use('/', attendanceRoutes); // Rutas para la funcionalidad de asistencia
 app.use('/documentation', documentationRoutes); // Rutas para la documentación
 app.use('/tickets', ticketRoutes); // Rutas para tickets por hora
 app.use('/sucursales', sucursalRoutes); // Rutas para tickets por hora
-
+app.use('/empleados-por-hora', empleadosPorHoraRoutes);
 // Manejar errores 404 (Página no encontrada)
 app.use((req, res) => {
     res.status(404).render('404', { url: req.originalUrl });
