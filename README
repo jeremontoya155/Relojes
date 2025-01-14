@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentación - Sistema de Gestión de Asistencia</title>
+   <title>Documentación - Sistema de Gestión de Asistencia</title>
 </head>
 <body>
     <header>
@@ -111,4 +106,3 @@ Content-Type: application/json
         </section>
     </main>
 </body>
-</html>
